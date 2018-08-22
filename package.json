@@ -1,0 +1,22 @@
+{
+  "name": "mocha-watch",
+  "version": "0.0.0",
+  "description": "",
+  "main": "",
+  "scripts": {
+    "lint": "eslint .",
+    "test": "mocha"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "MIT",
+  "devDependencies": {
+    "eslint": "^5.4.0",
+    "eslint-config-pretty-standard": "^2.0.0",
+    "eslint-plugin-import": "^2.14.0",
+    "eslint-plugin-prettier": "^2.6.2",
+    "mocha": "^23.5.0",
+    "prettier": "^1.14.2",
+    "unexpected": "^10.38.0"
+  }
+}
