@@ -36,5 +36,21 @@ describe("SourceGraph", () => {
         ]
       });
     });
+
+    it("should list incoming relations", async () => {
+      const fixturePath = resolveFixture("simple");
+      const sourceGraph = new SourceGraph(fixturePath);
+
+      await sourceGraph.populate();
+
+      const file = sourceGraph.query({
+        type: "file",
+        path: path.resolve(fixturePath, "foo.js")
+      });
+
+      return expect(file.incomingRelations, "to satisfy", [
+        { from: path.resolve(fixturePath, "bar.js") }
+      ]);
+    });
   });
 });
