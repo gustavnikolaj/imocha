@@ -18,5 +18,8 @@
     "mocha": "^5.2.0",
     "prettier": "^1.14.2",
     "unexpected": "^10.38.0"
+  },
+  "dependencies": {
+    "esprima": "^4.0.1"
   }
 }
