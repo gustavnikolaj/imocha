@@ -20,6 +20,7 @@
     "unexpected": "^10.38.0"
   },
   "dependencies": {
-    "esprima": "^4.0.1"
+    "esprima": "^4.0.1",
+    "glob": "^7.1.2"
   }
 }

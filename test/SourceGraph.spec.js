@@ -16,17 +16,22 @@ describe("SourceGraph", () => {
       const fixturePath = resolveFixture("simple");
       const sourceGraph = new SourceGraph(fixturePath);
 
-      await sourceGraph.load();
+      await sourceGraph.populate();
 
       return expect(sourceGraph, "to satisfy", {
         files: [
+          { path: path.resolve(fixturePath, "foo.js") },
           { path: path.resolve(fixturePath, "bar.js") },
-          { path: path.resolve(fixturePath, "foo.js") }
+          { path: path.resolve(fixturePath, "test/bar.spec.js") }
         ],
         relations: [
           {
             from: path.resolve(fixturePath, "bar.js"),
             to: path.resolve(fixturePath, "foo.js")
+          },
+          {
+            from: path.resolve(fixturePath, "test/bar.spec.js"),
+            to: path.resolve(fixturePath, "bar.js")
           }
         ]
       });
