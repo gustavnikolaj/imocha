@@ -20,6 +20,7 @@
     "unexpected": "^10.38.0"
   },
   "dependencies": {
+    "@gustavnikolaj/async-main-wrap": "^3.0.0",
     "esprima": "^4.0.1",
     "glob": "^7.1.2"
   }
