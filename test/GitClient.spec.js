@@ -28,13 +28,27 @@ describe("GitClient", () => {
       gitClient.runShellCommand = async () => {
         return {
           err: null,
-          stdout: ["?? foo.js", "?? bar.js", ""].join("\n")
+          stdout: "?? foo.js\n?? bar.js\n"
         };
       };
 
       return expect(() => gitClient.listDirtyFiles(), "to be fulfilled with", [
         "/fakeroot/foo.js",
         "/fakeroot/bar.js"
+      ]);
+    });
+
+    it("should list dirty files when the first is modified", () => {
+      const gitClient = new GitClient("/fakeroot");
+
+      gitClient.runShellCommand = async () => ({
+        err: null,
+        stdout: " M package.json\n M yarn.lock\n"
+      });
+
+      return expect(() => gitClient.listDirtyFiles(), "to be fulfilled with", [
+        "/fakeroot/package.json",
+        "/fakeroot/yarn.lock"
       ]);
     });
   });
