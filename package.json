@@ -21,6 +21,7 @@
   },
   "dependencies": {
     "@gustavnikolaj/async-main-wrap": "^3.0.0",
+    "chokidar": "^2.0.4",
     "esprima": "^4.0.1",
     "glob": "^7.1.2"
   }
