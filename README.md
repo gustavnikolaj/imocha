@@ -8,12 +8,26 @@ Run tests associated to changed files (based on git status).
 $ ./bin/mocha-watch
 ```
 
+## To be implemented
+
+### Use mocha commandline options
+
+Right now there's a little defaulting done in `src/SourceGraph/SourceGraph.js`
+in the method `resolveMochaConfiguration` which is reimplementing the default
+test file glob from mocha.
+
+This should be expanded such that any commandline option passed to mocha is
+respected (and passed on to the subshelled mocha) - whether they are passed as
+commandline options or in `mocha.opts`.
+
+### Add support for ESM syntax
+
+`esprima` supports ESM so it's just a matter of implementing a strategy for
+figuring out if a file is using esm or cjs syntax (try esm first, and cjs if
+that doesn't work) and then reimplementing the functionality in
+`findCommonJsRequireCalls` for esm.
+
 ## Known limitations
-
-### commonjs modules only
-
-For now, only CommonJS support is implemented. Implementing ESM support will be
-pretty easy as `esprima` already supports it.
 
 ### Dynamic imports
 
