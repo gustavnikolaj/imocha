@@ -8,6 +8,22 @@ Run tests associated to changed files (based on git status).
 $ ./bin/mocha-watch
 ```
 
+## Description
+
+When the cli is started, it will map out the test files and each of the source
+files that they depend on - this is done through the `SourceGraph` class.
+
+Then it looks at the dirty files (determined by running `git status`) and checks
+which of the test files would be relevant to run based on which files has been
+changed.
+
+The tests are being run by mocha itself - a process is forked off from which
+mocha is loaded. This happens on every single run to make sure that there is no
+pollution between test runs. This is the responsibility of the `MochaWorker` class.
+
+The orchestration of the above, and the watching of files are handled within the
+`MochaWatch` class.
+
 ## To be implemented
 
 ### Use mocha commandline options
