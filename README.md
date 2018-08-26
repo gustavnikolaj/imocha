@@ -9,7 +9,19 @@ In development - work in progress!
 Run tests associated to changed files (based on git status).
 
 ```
-$ ./bin/mocha-watch
+$ npm install --save-dev @gustavnikolaj/mocha-watch
+```
+
+or...
+
+```
+$ yarn add -D @gustavnikolaj/mocha-watch
+```
+
+Run the tests related to the changed files:
+
+```
+$ mocha-watch
 ```
 
 ## Description
