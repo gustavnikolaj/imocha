@@ -52,4 +52,28 @@ describe("findCommonJsRequireCalls", () => {
         "\n      require('./some', '-file');\n    "
     );
   });
+
+  it("should return a list of imported files", () => {
+    expect(
+      findCommonJsRequireCalls(`
+        import foo from './someFile'
+        import './another-file';
+        export default function () {};
+      `),
+      "to equal",
+      ["./someFile", "./another-file"]
+    );
+  });
+
+  it("should throw with invalid import sources", () => {
+    expect(
+      () =>
+        findCommonJsRequireCalls(`
+          import bar from './bar';
+          import foo;
+        `),
+      "to throw",
+      "Unexpected token (3:20)"
+    );
+  });
 });
