@@ -23,6 +23,7 @@
     "mocha": ">2.2.4"
   },
   "devDependencies": {
+    "coveralls": "^3.0.2",
     "eslint": "^5.4.0",
     "eslint-config-pretty-standard": "^2.0.0",
     "eslint-plugin-import": "^2.14.0",
