@@ -16,7 +16,10 @@ describe("SourceGraph", () => {
       const fixturePath = resolveFixture("simple");
       const sourceGraph = new SourceGraph(fixturePath);
 
-      await sourceGraph.populate();
+      // pass the list of test files mocha would run to populate
+      await sourceGraph.populate([
+        path.resolve(fixturePath, "test/bar.spec.js")
+      ]);
 
       return expect(sourceGraph, "to satisfy", {
         files: [
@@ -41,7 +44,10 @@ describe("SourceGraph", () => {
       const fixturePath = resolveFixture("simple");
       const sourceGraph = new SourceGraph(fixturePath);
 
-      await sourceGraph.populate();
+      // pass the list of test files mocha would run to populate
+      await sourceGraph.populate([
+        path.resolve(fixturePath, "test/bar.spec.js")
+      ]);
 
       const file = sourceGraph.query({
         type: "file",

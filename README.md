@@ -26,16 +26,6 @@ The orchestration of the above, and the watching of files are handled within the
 
 ## To be implemented
 
-### Use mocha commandline options
-
-Right now there's a little defaulting done in `src/SourceGraph/SourceGraph.js`
-in the method `resolveMochaConfiguration` which is reimplementing the default
-test file glob from mocha.
-
-This should be expanded such that any commandline option passed to mocha is
-respected (and passed on to the subshelled mocha) - whether they are passed as
-commandline options or in `mocha.opts`.
-
 ### Add support for ESM syntax
 
 `esprima` supports ESM so it's just a matter of implementing a strategy for
