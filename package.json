@@ -3,6 +3,7 @@
   "version": "0.0.0",
   "description": "Standalone watch mode for mocha.",
   "scripts": {
+    "coverage": "nyc mocha",
     "lint": "eslint .",
     "test": "mocha",
     "test-watch": "./bin/mocha-watch"
@@ -27,6 +28,7 @@
     "eslint-plugin-import": "^2.14.0",
     "eslint-plugin-prettier": "^2.6.2",
     "mocha": "^5.2.0",
+    "nyc": "^12.0.2",
     "prettier": "^1.14.2",
     "unexpected": "^10.38.0"
   },
@@ -36,5 +38,13 @@
     "commander": "2.15.1",
     "esprima": "^4.0.1",
     "minimatch": "3.0.4"
+  },
+  "nyc": {
+    "cache": true,
+    "reporter": [
+      "html",
+      "lcov",
+      "text"
+    ]
   }
 }
