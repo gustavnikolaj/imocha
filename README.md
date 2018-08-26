@@ -1,6 +1,7 @@
 # mocha-watch
 
 [![Build Status](https://travis-ci.com/gustavnikolaj/mocha-watch.svg?branch=master)](https://travis-ci.com/gustavnikolaj/mocha-watch)
+[![Coverage Status](https://coveralls.io/repos/github/gustavnikolaj/mocha-watch/badge.svg?branch=master)](https://coveralls.io/github/gustavnikolaj/mocha-watch?branch=master)
 
 In development - work in progress!
 
