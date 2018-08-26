@@ -5,11 +5,15 @@
   "main": "",
   "scripts": {
     "lint": "eslint .",
-    "test": "mocha"
+    "test": "mocha",
+    "test-watch": "./bin/mocha-watch"
   },
   "keywords": [],
   "author": "",
   "license": "MIT",
+  "peerDependencies": {
+    "mocha": ">2.2.4"
+  },
   "devDependencies": {
     "eslint": "^5.4.0",
     "eslint-config-pretty-standard": "^2.0.0",
