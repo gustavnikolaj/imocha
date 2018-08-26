@@ -76,4 +76,14 @@ describe("findRelationsInSourceCode", () => {
       "Unexpected token (3:20)"
     );
   });
+
+  it("should support object/rest spread syntax", () => {
+    expect(
+      findRelationsInSourceCode(`
+        module.exports = { ...process.env, MY_ENV: false };
+      `),
+      "to equal",
+      []
+    );
+  });
 });
