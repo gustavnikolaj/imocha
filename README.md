@@ -1,5 +1,6 @@
 # mocha-watch
 
+[![npm version](https://badge.fury.io/js/%40gustavnikolaj%2Fmocha-watch.svg)](https://www.npmjs.com/package/@gustavnikolaj/mocha-watch)
 [![Build Status](https://travis-ci.com/gustavnikolaj/mocha-watch.svg?branch=master)](https://travis-ci.com/gustavnikolaj/mocha-watch)
 [![Coverage Status](https://coveralls.io/repos/github/gustavnikolaj/mocha-watch/badge.svg?branch=master)](https://coveralls.io/github/gustavnikolaj/mocha-watch?branch=master)
 
