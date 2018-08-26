@@ -1,15 +1,22 @@
 {
-  "name": "mocha-watch",
+  "name": "@gustavnikolaj/mocha-watch",
   "version": "0.0.0",
-  "description": "",
-  "main": "",
+  "description": "Standalone watch mode for mocha.",
   "scripts": {
     "lint": "eslint .",
     "test": "mocha",
     "test-watch": "./bin/mocha-watch"
   },
-  "keywords": [],
-  "author": "",
+  "bin": {
+    "mocha-watch": "bin/mocha-watch"
+  },
+  "keywords": [
+    "mocha-watch",
+    "mocha",
+    "watch"
+  ],
+  "author": "Gustav Nikolaj <gustavnikolaj@gmail.com>",
+  "repository": "github:gustavnikolaj/mocha-watch",
   "license": "MIT",
   "peerDependencies": {
     "mocha": ">2.2.4"
