@@ -1,14 +1,14 @@
 const expect = require("unexpected");
-const findCommonJsRequireCalls = require("../lib/findCommonJsRequireCalls");
+const findRelationsInSourceCode = require("../lib/findRelationsInSourceCode");
 
-describe("findCommonJsRequireCalls", () => {
+describe("findRelationsInSourceCode", () => {
   it("should be a function", () => {
-    expect(findCommonJsRequireCalls, "to be a function");
+    expect(findRelationsInSourceCode, "to be a function");
   });
 
   it("should return an empty list of required files", () => {
     expect(
-      findCommonJsRequireCalls(`
+      findRelationsInSourceCode(`
         module.exports = function () {};
       `),
       "to equal",
@@ -18,7 +18,7 @@ describe("findCommonJsRequireCalls", () => {
 
   it("should return a list of required files", () => {
     expect(
-      findCommonJsRequireCalls(`
+      findRelationsInSourceCode(`
         require('./another-file');
         module.exports = function () {};
       `),
@@ -33,7 +33,7 @@ describe("findCommonJsRequireCalls", () => {
     `;
 
     expect(
-      () => findCommonJsRequireCalls(source),
+      () => findRelationsInSourceCode(source),
       "to throw",
       "Can only parse require calls with literal values.\n\n    " +
         "\n      require('./some' + '-file');\n    "
@@ -46,7 +46,7 @@ describe("findCommonJsRequireCalls", () => {
     `;
 
     expect(
-      () => findCommonJsRequireCalls(source),
+      () => findRelationsInSourceCode(source),
       "to throw",
       "Cannot parse require calls with more than one argument.\n\n    " +
         "\n      require('./some', '-file');\n    "
@@ -55,7 +55,7 @@ describe("findCommonJsRequireCalls", () => {
 
   it("should return a list of imported files", () => {
     expect(
-      findCommonJsRequireCalls(`
+      findRelationsInSourceCode(`
         import foo from './someFile'
         import './another-file';
         export default function () {};
@@ -68,7 +68,7 @@ describe("findCommonJsRequireCalls", () => {
   it("should throw with invalid import sources", () => {
     expect(
       () =>
-        findCommonJsRequireCalls(`
+        findRelationsInSourceCode(`
           import bar from './bar';
           import foo;
         `),
