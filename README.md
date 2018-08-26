@@ -1,5 +1,7 @@
 # mocha-watch
 
+[![Build Status](https://travis-ci.com/gustavnikolaj/mocha-watch.svg?branch=master)](https://travis-ci.com/gustavnikolaj/mocha-watch)
+
 In development - work in progress!
 
 Run tests associated to changed files (based on git status).
