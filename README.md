@@ -27,15 +27,6 @@ pollution between test runs. This is the responsibility of the `MochaWorker` cla
 The orchestration of the above, and the watching of files are handled within the
 `MochaWatch` class.
 
-## To be implemented
-
-### Add support for ESM syntax
-
-`esprima` supports ESM so it's just a matter of implementing a strategy for
-figuring out if a file is using esm or cjs syntax (try esm first, and cjs if
-that doesn't work) and then reimplementing the functionality in
-`findCommonJsRequireCalls` for esm.
-
 ## Known limitations
 
 ### Dynamic imports
