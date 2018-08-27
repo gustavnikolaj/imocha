@@ -19,6 +19,9 @@
   "author": "Gustav Nikolaj <gustavnikolaj@gmail.com>",
   "repository": "github:gustavnikolaj/mocha-watch",
   "license": "MIT",
+  "engines": {
+    "node": ">=8.3.0"
+  },
   "peerDependencies": {
     "mocha": ">2.2.4"
   },
