@@ -1,27 +1,27 @@
-# mocha-watch
+# imocha
 
-[![npm version](https://badge.fury.io/js/%40gustavnikolaj%2Fmocha-watch.svg)](https://www.npmjs.com/package/@gustavnikolaj/mocha-watch)
-[![Build Status](https://travis-ci.com/gustavnikolaj/mocha-watch.svg?branch=master)](https://travis-ci.com/gustavnikolaj/mocha-watch)
-[![Coverage Status](https://coveralls.io/repos/github/gustavnikolaj/mocha-watch/badge.svg?branch=master)](https://coveralls.io/github/gustavnikolaj/mocha-watch?branch=master)
+[![npm version](https://badge.fury.io/js/imocha.svg)](https://www.npmjs.com/package/imocha)
+[![Build Status](https://travis-ci.com/gustavnikolaj/imocha.svg?branch=master)](https://travis-ci.com/gustavnikolaj/imocha)
+[![Coverage Status](https://coveralls.io/repos/github/gustavnikolaj/imocha/badge.svg?branch=master)](https://coveralls.io/github/gustavnikolaj/imocha?branch=master)
 
 In development - work in progress!
 
 Run tests associated to changed files (based on git status).
 
 ```
-$ npm install --save-dev @gustavnikolaj/mocha-watch
+$ npm install --save-dev imocha
 ```
 
 or...
 
 ```
-$ yarn add -D @gustavnikolaj/mocha-watch
+$ yarn add -D imocha
 ```
 
 Run the tests related to the changed files:
 
 ```
-$ mocha-watch
+$ imocha
 ```
 
 ## Description

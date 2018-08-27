@@ -6,10 +6,10 @@
     "coverage": "nyc mocha",
     "lint": "eslint .",
     "test": "mocha",
-    "test-watch": "./bin/mocha-watch"
+    "test-watch": "./bin/imocha"
   },
   "bin": {
-    "mocha-watch": "bin/mocha-watch"
+    "imocha": "bin/imocha"
   },
   "keywords": [
     "mocha-watch",
@@ -17,7 +17,7 @@
     "watch"
   ],
   "author": "Gustav Nikolaj <gustavnikolaj@gmail.com>",
-  "repository": "github:gustavnikolaj/mocha-watch",
+  "repository": "github:gustavnikolaj/imocha",
   "license": "MIT",
   "engines": {
     "node": ">=8.3.0"
