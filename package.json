@@ -1,6 +1,6 @@
 {
   "name": "@gustavnikolaj/mocha-watch",
-  "version": "0.0.1",
+  "version": "0.0.2",
   "description": "Standalone watch mode for mocha.",
   "scripts": {
     "coverage": "nyc mocha",
