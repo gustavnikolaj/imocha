@@ -1,5 +1,5 @@
 {
-  "name": "@gustavnikolaj/mocha-watch",
+  "name": "imocha",
   "version": "0.0.2",
   "description": "Standalone watch mode for mocha.",
   "scripts": {
