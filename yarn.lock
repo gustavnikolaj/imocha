@@ -94,9 +94,13 @@
   version "7.0.0-beta.51"
   resolved "https://registry.yarnpkg.com/@babel/parser/-/parser-7.0.0-beta.51.tgz#27cec2df409df60af58270ed8f6aa55409ea86f6"
 
-"@babel/parser@7.0.0-rc.3", "@babel/parser@^7.0.0-rc.3":
+"@babel/parser@7.0.0-rc.3":
   version "7.0.0-rc.3"
   resolved "https://registry.yarnpkg.com/@babel/parser/-/parser-7.0.0-rc.3.tgz#859d7b60ef6b939aab5f6d4f4bffbb7bafdc418b"
+
+"@babel/parser@^7.0.0-rc.3":
+  version "7.0.0"
+  resolved "https://registry.yarnpkg.com/@babel/parser/-/parser-7.0.0.tgz#697655183394facffb063437ddf52c0277698775"
 
 "@babel/template@7.0.0-beta.51":
   version "7.0.0-beta.51"
