@@ -37,8 +37,8 @@
     "unexpected": "^10.38.0"
   },
   "dependencies": {
-    "@babel/parser": "^7.0.0-rc.3",
-    "@babel/traverse": "^7.0.0-rc.3",
+    "@babel/parser": "^7.0.0",
+    "@babel/traverse": "^7.0.0",
     "@gustavnikolaj/async-main-wrap": "^3.0.0",
     "chokidar": "^2.0.4",
     "commander": "2.15.1",
