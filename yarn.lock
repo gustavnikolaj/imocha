@@ -2918,9 +2918,9 @@ unexpected-bluebird@2.9.34-longstack2:
   version "2.9.34-longstack2"
   resolved "https://registry.yarnpkg.com/unexpected-bluebird/-/unexpected-bluebird-2.9.34-longstack2.tgz#49acac753b0556ded6025210ee96182307d2b2c9"
 
-unexpected@^10.38.0:
-  version "10.38.0"
-  resolved "https://registry.yarnpkg.com/unexpected/-/unexpected-10.38.0.tgz#ffe67d4afe872cfcf7cea630cf4a62948564b157"
+unexpected@^10.39.0:
+  version "10.39.0"
+  resolved "https://registry.yarnpkg.com/unexpected/-/unexpected-10.39.0.tgz#3696b9a1ba60bc5a7ee8b107c91c18309a76d060"
   dependencies:
     array-changes "3.0.1"
     array-changes-async "3.0.1"
