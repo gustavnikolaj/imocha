@@ -3,6 +3,12 @@ const MochaWatch = require("../lib/MochaWatch");
 
 const noop = () => {};
 
+function createMockMochaWorker(config = {}) {
+  return {
+    runTests: config.runTests || noop
+  };
+}
+
 function createMockSourceGraph(config = {}) {
   return {
     addFileFromPath: config.addFileFromPath || noop,
@@ -213,6 +219,43 @@ describe("MochaWatch", () => {
         expect(mochaWatch.testTimer, "not to be null");
         clearTimeout(mochaWatch.testTimer);
       });
+    });
+  });
+
+  describe("#runTests", () => {
+    it("should flush queued files", async () => {
+      const mochaWorker = createMockMochaWorker();
+      const mochaWatch = new MochaWatch(null, null, null, mochaWorker);
+      mochaWatch.state = "ready";
+      mochaWatch.findTestFilesToRun = () => [];
+
+      const calls = [];
+      mochaWatch.flushQueuedFiles = (...args) => calls.push(args);
+
+      await mochaWatch.runTests();
+
+      expect(calls, "to have length", 1);
+    });
+
+    it("should trigger the mocha worker with ", async () => {
+      const calls = [];
+      const mochaWorker = createMockMochaWorker({
+        runTests: (...args) => calls.push(args)
+      });
+      const mochaWatch = new MochaWatch(null, null, null, mochaWorker);
+      mochaWatch.state = "ready";
+      mochaWatch.flushQueuedFiles = () => Promise.resolve();
+      mochaWatch.findTestFilesToRun = () => [
+        "/path/to/file1",
+        "/path/to/file2",
+        "/path/to/file3"
+      ];
+
+      await mochaWatch.runTests();
+
+      expect(calls, "to equal", [
+        [["/path/to/file1", "/path/to/file2", "/path/to/file3"]]
+      ]);
     });
   });
 });
