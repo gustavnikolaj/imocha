@@ -237,7 +237,7 @@ describe("MochaWatch", () => {
       expect(calls, "to have length", 1);
     });
 
-    it("should trigger the mocha worker with ", async () => {
+    it("should trigger the mocha worker with found test files", async () => {
       const calls = [];
       const mochaWorker = createMockMochaWorker({
         runTests: (...args) => calls.push(args)
