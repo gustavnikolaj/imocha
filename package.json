@@ -37,7 +37,7 @@
     "unexpected": "^10.39.1"
   },
   "dependencies": {
-    "@babel/parser": "^7.1.2",
+    "@babel/parser": "^7.1.5",
     "@babel/traverse": "^7.1.4",
     "@gustavnikolaj/async-main-wrap": "^3.0.0",
     "chokidar": "^2.0.4",
