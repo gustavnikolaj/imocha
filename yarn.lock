@@ -776,13 +776,13 @@ detect-libc@^1.0.2:
   version "1.0.3"
   resolved "https://registry.yarnpkg.com/detect-libc/-/detect-libc-1.0.3.tgz#fa137c4bd698edf55cd5cd02ac559f91a4c4ba9b"
 
-diff@1.1.0:
-  version "1.1.0"
-  resolved "https://registry.yarnpkg.com/diff/-/diff-1.1.0.tgz#798a49381aa464151e9b4f0e6ff2b09a8a1ad23f"
-
 diff@3.5.0:
   version "3.5.0"
   resolved "https://registry.yarnpkg.com/diff/-/diff-3.5.0.tgz#800c0dd1e0a8bfbc95835c202ad220fe317e5a12"
+
+diff@4.0.1:
+  version "4.0.1"
+  resolved "https://registry.yarnpkg.com/diff/-/diff-4.0.1.tgz#0c667cb467ebbb5cea7f14f135cc2dba7780a8ff"
 
 doctrine@1.5.0:
   version "1.5.0"
@@ -2931,15 +2931,15 @@ unexpected-bluebird@2.9.34-longstack2:
   version "2.9.34-longstack2"
   resolved "https://registry.yarnpkg.com/unexpected-bluebird/-/unexpected-bluebird-2.9.34-longstack2.tgz#49acac753b0556ded6025210ee96182307d2b2c9"
 
-unexpected@^11.0.0:
-  version "11.0.0"
-  resolved "https://registry.yarnpkg.com/unexpected/-/unexpected-11.0.0.tgz#ca913af4fc09f0eb693c85c0cc43e667fdb81aff"
+unexpected@^11.0.1:
+  version "11.0.1"
+  resolved "https://registry.yarnpkg.com/unexpected/-/unexpected-11.0.1.tgz#88e1d8fd23f8762a9afe4217d4a773fe6b05546f"
   dependencies:
     array-changes "3.0.1"
     array-changes-async "3.0.1"
     babel-runtime "6.26.0"
     detect-indent "3.0.1"
-    diff "1.1.0"
+    diff "4.0.1"
     greedy-interval-packer "1.2.0"
     leven "2.1.0"
     magicpen "5.12.0"
