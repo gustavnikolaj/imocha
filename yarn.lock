@@ -126,9 +126,9 @@
     lodash "^4.17.10"
     to-fast-properties "^2.0.0"
 
-"@gustavnikolaj/async-main-wrap@^3.0.0":
-  version "3.0.0"
-  resolved "https://registry.yarnpkg.com/@gustavnikolaj/async-main-wrap/-/async-main-wrap-3.0.0.tgz#b45a325dc618c09f0c8d615209f939fe5ba38ac6"
+"@gustavnikolaj/async-main-wrap@^3.0.1":
+  version "3.0.1"
+  resolved "https://registry.yarnpkg.com/@gustavnikolaj/async-main-wrap/-/async-main-wrap-3.0.1.tgz#b838eb9dfaf9ed81bfc2b47f64d17a83bbcfc71b"
 
 abbrev@1:
   version "1.1.1"
