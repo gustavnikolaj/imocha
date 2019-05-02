@@ -40,7 +40,7 @@
     "@babel/parser": "^7.4.4",
     "@babel/traverse": "^7.4.4",
     "@gustavnikolaj/async-main-wrap": "^3.0.1",
-    "chokidar": "^2.1.5",
+    "chokidar": "^3.0.0",
     "commander": "2.15.1",
     "minimatch": "3.0.4"
   },
