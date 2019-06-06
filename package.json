@@ -41,7 +41,7 @@
     "@babel/traverse": "^7.4.5",
     "@gustavnikolaj/async-main-wrap": "^3.0.1",
     "chokidar": "^3.0.1",
-    "commander": "2.15.1",
+    "commander": "2.20.0",
     "minimatch": "3.0.4"
   },
   "nyc": {
