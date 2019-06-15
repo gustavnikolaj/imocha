@@ -34,7 +34,7 @@
     "mocha": "^6.1.4",
     "nyc": "^14.1.1",
     "prettier": "^1.18.2",
-    "unexpected": "^11.6.0"
+    "unexpected": "^11.6.1"
   },
   "dependencies": {
     "@babel/parser": "^7.4.5",
