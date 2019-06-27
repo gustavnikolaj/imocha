@@ -86,4 +86,21 @@ describe("findRelationsInSourceCode", () => {
       []
     );
   });
+
+  it("should support jsx syntax", () => {
+    expect(
+      findRelationsInSourceCode(`
+        import User from './User'
+        export const UserDetails = ({ avatar, email, name }) => (
+          <div className='user-details'>
+            <Avatar className="user-avatar" src={avatar} />
+            <span className="user-name">{name}</span>
+            <span className="user-email">{email}</span>
+          </div>
+        );
+      `),
+      "to equal",
+      ["./User"]
+    );
+  });
 });
