@@ -40,8 +40,6 @@
     "unexpected": "^11.6.1"
   },
   "dependencies": {
-    "@babel/parser": "^7.4.5",
-    "@babel/traverse": "^7.4.5",
     "@gustavnikolaj/async-main-wrap": "^3.0.1",
     "chokidar": "^3.0.1",
     "commander": "2.15.1",
