@@ -65,18 +65,6 @@ describe("findRelationsInSourceCode", () => {
     );
   });
 
-  it("should throw with invalid import sources", () => {
-    expect(
-      () =>
-        findRelationsInSourceCode(`
-          import bar from './bar';
-          import foo;
-        `),
-      "to throw",
-      "Unexpected token (3:20)"
-    );
-  });
-
   it("should support object/rest spread syntax", () => {
     expect(
       findRelationsInSourceCode(`
