@@ -104,6 +104,12 @@
   version "3.0.1"
   resolved "https://registry.yarnpkg.com/@gustavnikolaj/async-main-wrap/-/async-main-wrap-3.0.1.tgz#b838eb9dfaf9ed81bfc2b47f64d17a83bbcfc71b"
 
+"@gustavnikolaj/find-relations-in-js@^1.0.0":
+  version "1.0.0"
+  resolved "https://registry.yarnpkg.com/@gustavnikolaj/find-relations-in-js/-/find-relations-in-js-1.0.0.tgz#5f1a52a29d50a20bf0da9bedc2c5e64cae22f117"
+  dependencies:
+    acorn "^6.1.1"
+
 acorn-jsx@^5.0.0:
   version "5.0.1"
   resolved "https://registry.yarnpkg.com/acorn-jsx/-/acorn-jsx-5.0.1.tgz#32a064fd925429216a09b141102bfdd185fae40e"
@@ -111,6 +117,10 @@ acorn-jsx@^5.0.0:
 acorn@^6.0.7:
   version "6.1.0"
   resolved "https://registry.yarnpkg.com/acorn/-/acorn-6.1.0.tgz#b0a3be31752c97a0f7013c5f4903b71a05db6818"
+
+acorn@^6.1.1:
+  version "6.1.1"
+  resolved "https://registry.yarnpkg.com/acorn/-/acorn-6.1.1.tgz#7d25ae05bb8ad1f9b699108e1094ecd7884adc1f"
 
 ajv@^5.3.0:
   version "5.5.2"
