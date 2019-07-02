@@ -1,7 +1,47 @@
 language: node_js
-install: npm ci
-script:
-  - npm run lint
-  - npm run coverage
-after_script:
-  - "cat ./coverage/lcov.info | ./node_modules/.bin/coveralls"
+
+# this avoids compilation in most cases (where we don't need it)
+install: npm ci --ignore-scripts
+cache:
+  directories:
+    - ~/.npm # cache npm's cache
+
+stages:
+  - smoke # this ensures a "user" install works properly
+  - precache # warm up cache for default Node.js version
+  - lint # lint code and docs
+  - test # all tests
+
+jobs:
+  include:
+    - stage: lint
+      script: npm run lint
+
+    - stage: precache
+      script: true
+
+    - stage: test
+      script: npm run coverage
+      after_script:
+        - "cat ./coverage/lcov.info | ./node_modules/.bin/coveralls"
+
+    - &node
+      stage: test
+      script: npm test
+      node_js: 12
+
+    - <<: *node
+      node_js: 10
+
+    - <<: *node
+      node_js: 8
+
+    - &smoke
+      stage: smoke
+      env: null
+      install: npm install --production
+      script: true
+      cache:
+        directories:
+          - ~/.npm
+          - node_modules # npm install, unlike npm ci, doesn't wipe node_modules
