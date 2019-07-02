@@ -73,7 +73,7 @@ describe("MochaWatch", () => {
       const sourceGraph = createMockSourceGraph({
         query: () => fakeFile
       });
-      const mochaWatch = new MochaWatch(null, null, sourceGraph);
+      const mochaWatch = new MochaWatch(null, sourceGraph);
       mochaWatch.state = "ready";
 
       await mochaWatch.fileChanged("/path/to/file");
@@ -85,7 +85,7 @@ describe("MochaWatch", () => {
 
     it("should queue a new file", async () => {
       const sourceGraph = createMockSourceGraph();
-      const mochaWatch = new MochaWatch(null, null, sourceGraph);
+      const mochaWatch = new MochaWatch(null, sourceGraph);
       mochaWatch.state = "ready";
 
       await mochaWatch.fileChanged("/path/to/file");
@@ -116,7 +116,7 @@ describe("MochaWatch", () => {
       const sourceGraph = createMockSourceGraph({
         query: () => fakeFile
       });
-      const mochaWatch = new MochaWatch(null, null, sourceGraph);
+      const mochaWatch = new MochaWatch(null, sourceGraph);
       mochaWatch.state = "ready";
 
       await mochaWatch.fileUnlink("/path/to/file");
@@ -136,13 +136,7 @@ describe("MochaWatch", () => {
       const sourceGraph = createMockSourceGraph({
         setTestFilePaths: (...args) => setTestFilePathsCalls.push(args)
       });
-      const mochaWatch = new MochaWatch(
-        null,
-        null,
-        sourceGraph,
-        null,
-        mochaOpts
-      );
+      const mochaWatch = new MochaWatch(null, sourceGraph, null, mochaOpts);
 
       await mochaWatch.flushQueuedFiles();
 
@@ -157,13 +151,7 @@ describe("MochaWatch", () => {
       const sourceGraph = createMockSourceGraph({
         addFileFromPath: (...args) => addFileFromPathCalls.push(args)
       });
-      const mochaWatch = new MochaWatch(
-        null,
-        null,
-        sourceGraph,
-        null,
-        mochaOpts
-      );
+      const mochaWatch = new MochaWatch(null, sourceGraph, null, mochaOpts);
       mochaWatch.watcherQueuedFiles = [
         "/path/to/file1",
         "/path/to/file2",
@@ -231,7 +219,7 @@ describe("MochaWatch", () => {
   describe("#runTests", () => {
     it("should flush queued files", async () => {
       const mochaWorker = createMockMochaWorker();
-      const mochaWatch = new MochaWatch(null, null, null, mochaWorker);
+      const mochaWatch = new MochaWatch(null, null, mochaWorker);
       mochaWatch.state = "ready";
       mochaWatch.findTestFilesToRun = () => [];
 
@@ -248,7 +236,7 @@ describe("MochaWatch", () => {
       const mochaWorker = createMockMochaWorker({
         runTests: (...args) => calls.push(args)
       });
-      const mochaWatch = new MochaWatch(null, null, null, mochaWorker);
+      const mochaWatch = new MochaWatch(null, null, mochaWorker);
       mochaWatch.state = "ready";
       mochaWatch.flushQueuedFiles = () => Promise.resolve();
       mochaWatch.findTestFilesToRun = () => [
