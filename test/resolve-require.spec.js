@@ -1,8 +1,8 @@
 const expect = require("unexpected");
-const resolveRequire = require("../lib/resolveRequire");
+const resolveRequire = require("../lib/resolve-require");
 const path = require("path");
 
-const fixturesDir = path.resolve(__dirname, "../fixtures/resolveRequire");
+const fixturesDir = path.resolve(__dirname, "../fixtures/resolve-require");
 
 describe("resolveRequire", () => {
   it("should be a function", () => {
