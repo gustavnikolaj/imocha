@@ -129,17 +129,20 @@ describe("MochaWatch", () => {
 
   describe("#flushQueuedFiles", () => {
     it("should recalculate the files run by mocha", async () => {
-      const program = {
-        args: [],
-        compilers: [],
-        exclude: [],
-        file: []
+      const mochaOpts = {
+        extension: ["js"]
       };
       const setTestFilePathsCalls = [];
       const sourceGraph = createMockSourceGraph({
         setTestFilePaths: (...args) => setTestFilePathsCalls.push(args)
       });
-      const mochaWatch = new MochaWatch(null, null, sourceGraph, null, program);
+      const mochaWatch = new MochaWatch(
+        null,
+        null,
+        sourceGraph,
+        null,
+        mochaOpts
+      );
 
       await mochaWatch.flushQueuedFiles();
 
@@ -147,17 +150,20 @@ describe("MochaWatch", () => {
     });
 
     it("should process any queued files", async () => {
-      const program = {
-        args: [],
-        compilers: [],
-        exclude: [],
-        file: []
+      const mochaOpts = {
+        extension: ["js"]
       };
       const addFileFromPathCalls = [];
       const sourceGraph = createMockSourceGraph({
         addFileFromPath: (...args) => addFileFromPathCalls.push(args)
       });
-      const mochaWatch = new MochaWatch(null, null, sourceGraph, null, program);
+      const mochaWatch = new MochaWatch(
+        null,
+        null,
+        sourceGraph,
+        null,
+        mochaOpts
+      );
       mochaWatch.watcherQueuedFiles = [
         "/path/to/file1",
         "/path/to/file2",
