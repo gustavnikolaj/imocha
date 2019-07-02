@@ -1,6 +1,6 @@
 const expect = require("unexpected");
 const path = require("path");
-const runShellCommand = require("../lib/runShellCommand");
+const runShellCommand = require("../lib/run-shell-command");
 
 describe("runShellCommand", () => {
   it("should be a function", () => {
