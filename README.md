@@ -3,6 +3,7 @@
 [![npm version](https://badge.fury.io/js/imocha.svg)](https://www.npmjs.com/package/imocha)
 [![Build Status](https://travis-ci.com/gustavnikolaj/imocha.svg?branch=master)](https://travis-ci.com/gustavnikolaj/imocha)
 [![Coverage Status](https://coveralls.io/repos/github/gustavnikolaj/imocha/badge.svg?branch=master)](https://coveralls.io/github/gustavnikolaj/imocha?branch=master)
+[![Depfu](https://badges.depfu.com/badges/2c81fa4b3f304532a25c118a01079e17/overview.svg)](https://depfu.com/github/gustavnikolaj/imocha?project_id=8440)
 
 In development - work in progress!
 
