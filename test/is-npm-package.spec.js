@@ -1,5 +1,5 @@
 const expect = require("unexpected");
-const isNpmPackage = require("../lib/isNpmPackage");
+const isNpmPackage = require("../lib/is-npm-package");
 
 describe("isNpmPackage", () => {
   it("should be a function", () => {
