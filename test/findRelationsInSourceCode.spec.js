@@ -1,5 +1,5 @@
 const expect = require("unexpected");
-const findRelationsInSourceCode = require("../lib/findRelationsInSourceCode");
+const findRelationsInSourceCode = require("../lib/find-relations-in-source-code");
 
 describe("findRelationsInSourceCode", () => {
   it("should be a function", () => {
