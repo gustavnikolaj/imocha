@@ -1,6 +1,5 @@
 #!/usr/bin/env node
 
-const asyncMainWrap = require("@gustavnikolaj/async-main-wrap");
 const main = require("../lib/cli");
 
-asyncMainWrap(main)(process.cwd(), process.argv.slice(2));
+main(process.cwd(), process.argv.slice(2));

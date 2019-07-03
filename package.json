@@ -39,7 +39,6 @@
     "unexpected": "^11.6.1"
   },
   "dependencies": {
-    "@gustavnikolaj/async-main-wrap": "^3.0.1",
     "@gustavnikolaj/find-relations-in-js": "^1.2.0",
     "chokidar": "^3.0.1",
     "minimatch": "3.0.4",
