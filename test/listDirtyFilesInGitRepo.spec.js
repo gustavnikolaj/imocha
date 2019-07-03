@@ -12,7 +12,8 @@ describe("listDirtyFilesInGitRepo", () => {
   });
 
   it("should list dirty files", () => {
-    listDirtyFilesInGitRepo.getGitStatus = async () => "?? foo.js\n?? bar.js\n";
+    listDirtyFilesInGitRepo.getGitStatus = () =>
+      Promise.resolve("?? foo.js\n?? bar.js\n");
 
     return expect(
       () => listDirtyFilesInGitRepo("/fakeroot"),
@@ -22,8 +23,8 @@ describe("listDirtyFilesInGitRepo", () => {
   });
 
   it("should list dirty files when the first is modified", () => {
-    listDirtyFilesInGitRepo.getGitStatus = async () =>
-      " M package.json\n?? yarn.lock\n";
+    listDirtyFilesInGitRepo.getGitStatus = () =>
+      Promise.resolve(" M package.json\n?? yarn.lock\n");
 
     return expect(
       () => listDirtyFilesInGitRepo("/fakeroot"),
