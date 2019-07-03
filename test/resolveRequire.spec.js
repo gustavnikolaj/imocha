@@ -11,39 +11,39 @@ describe("resolveRequire", () => {
 
   it("should throw NYI error when attempting to resolve a module", () => {
     return expect(
-      async () => resolveRequire(__filename, "unexpected"),
-      "to be rejected with",
+      () => resolveRequire(__filename, "unexpected"),
+      "to throw",
       "Module resolution not yet implemented"
     );
   });
 
-  it("should find foo.js when asking for ./foo", async () => {
+  it("should find foo.js when asking for ./foo", () => {
     return expect(
-      await resolveRequire(fixturesDir, "./foo"),
+      resolveRequire(fixturesDir, "./foo"),
       "to equal",
       path.resolve(fixturesDir, "foo.js")
     );
   });
 
-  it("should find bar/bar.js via bar/package.json when asking for ./bar", async () => {
+  it("should find bar/bar.js via bar/package.json when asking for ./bar", () => {
     return expect(
-      await resolveRequire(fixturesDir, "./bar"),
+      resolveRequire(fixturesDir, "./bar"),
       "to equal",
       path.resolve(fixturesDir, "bar/bar.js")
     );
   });
 
-  it("should find baz/index.js when asking for ./baz", async () => {
+  it("should find baz/index.js when asking for ./baz", () => {
     return expect(
-      await resolveRequire(fixturesDir, "./baz"),
+      resolveRequire(fixturesDir, "./baz"),
       "to equal",
       path.resolve(fixturesDir, "baz/index.js")
     );
   });
 
-  it("should find testdata.json when asking for testdata.json", async () => {
+  it("should find testdata.json when asking for testdata.json", () => {
     return expect(
-      await resolveRequire(fixturesDir, "./testdata.json"),
+      resolveRequire(fixturesDir, "./testdata.json"),
       "to equal",
       path.resolve(fixturesDir, "testdata.json")
     );
