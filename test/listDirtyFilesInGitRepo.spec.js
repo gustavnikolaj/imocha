@@ -95,5 +95,21 @@ describe("listDirtyFilesInGitRepo", () => {
         code: "IMOCHA_NO_GIT_REPO"
       });
     });
+
+    it("should return a no git repo error 2", () => {
+      const err = {
+        message:
+          "Command failed: git status --porcelain --untracked-files=all\nfatal: Not a git repository (or any of the parent directories): .git\n",
+        killed: false,
+        code: 128,
+        signal: null,
+        cmd: "git status --porcelain --untracked-files=all"
+      };
+
+      expect(prepareGitError(err), "to satisfy", {
+        message: "Not a git repo.",
+        code: "IMOCHA_NO_GIT_REPO"
+      });
+    });
   });
 });
