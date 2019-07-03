@@ -40,4 +40,12 @@ describe("resolveRequire", () => {
       path.resolve(fixturesDir, "baz/index.js")
     );
   });
+
+  it("should find testdata.json when asking for testdata.json", async () => {
+    return expect(
+      await resolveRequire(fixturesDir, "./testdata.json"),
+      "to equal",
+      path.resolve(fixturesDir, "testdata.json")
+    );
+  });
 });
