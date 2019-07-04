@@ -19,10 +19,16 @@ or...
 $ yarn add -D imocha
 ```
 
-Run the tests related to the changed files:
+You can also choose to install it globally (`npm install -g imocha`) or run it
+through npx (`npx imocha`). If you have a global imocha and run it on a project
+that has its own version of imocha, the project local version will automatically
+be used.
+
+If you have a project using mocha and you want to try out imocha without
+installing it into your project, you can run:
 
 ```
-$ imocha
+$ npx imocha
 ```
 
 ## Description
