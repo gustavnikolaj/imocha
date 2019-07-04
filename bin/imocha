@@ -1,11 +1,6 @@
 #!/usr/bin/env node
 
-const debug = (...args) => {
-  if (process.env.DEBUG) {
-    console.log(...args);
-  }
-};
-
+const debug = require("../lib/debug");
 const resolveFrom = require("resolve-from");
 let pathToLocalBin;
 
