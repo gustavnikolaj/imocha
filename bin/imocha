@@ -1,5 +1,47 @@
 #!/usr/bin/env node
 
-const main = require("../lib/cli");
+const debug = (...args) => {
+  if (process.env.DEBUG) {
+    console.log(...args);
+  }
+};
 
-main(process.cwd(), process.argv.slice(2));
+const resolveFrom = require("resolve-from");
+let pathToLocalBin;
+
+debug("running imocha from:", __filename);
+
+try {
+  pathToLocalBin = resolveFrom(process.cwd(), "imocha/bin/imocha");
+  debug("found local imocha:", pathToLocalBin);
+} catch (e) {
+  if (e.code !== "MODULE_NOT_FOUND") {
+    throw e;
+  }
+}
+
+if (pathToLocalBin) {
+  const { spawn } = require("child_process");
+
+  const args = [pathToLocalBin].concat(process.argv.slice(2));
+
+  debug("spawning: node", ...args);
+
+  const proc = spawn(process.execPath, args, { stdio: "inherit" });
+
+  proc.on("exit", (code, signal) => {
+    process.on("exit", () => {
+      if (signal) {
+        process.kill(process.pid, signal);
+      } else {
+        process.exit(code);
+      }
+    });
+  });
+
+  process.on("SIGINT", () => {
+    proc.kill("SIGINT");
+  });
+} else {
+  require("../lib/cli")(process.cwd(), process.argv.slice(2));
+}
