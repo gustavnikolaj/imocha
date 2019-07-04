@@ -41,6 +41,27 @@ pollution between test runs. This is the responsibility of the `MochaWorker` cla
 The orchestration of the above, and the watching of files are handled within the
 `MochaWatch` class.
 
+## Tips
+
+### Debugging tests that aren't being picked up
+
+If you experience that some of your tests aren't being executed where they
+should, try running imocha with a DEBUG environment variable with the value
+`true`:
+
+```
+$ DEBUG=true imocha
+```
+
+This will output debug information from imocha, and among that it will report
+about `require` and `import` statements that it saw, but could not resolve. It
+could as an example be caused by calling require with a variable as the value,
+which would be reported as such:
+
+```
+Unmatched relation: Non literal require. (in /path/to/file.js:18:29)
+```
+
 ## Known limitations
 
 ### Dynamic imports

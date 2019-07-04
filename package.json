@@ -35,7 +35,7 @@
     "unexpected": "^11.6.1"
   },
   "dependencies": {
-    "@gustavnikolaj/find-relations-in-js": "^1.2.0",
+    "@gustavnikolaj/find-relations-in-js": "^2.0.0",
     "chokidar": "^3.0.1",
     "minimatch": "3.0.4",
     "mocha": "^6.1.4",
