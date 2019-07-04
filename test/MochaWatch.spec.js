@@ -53,22 +53,23 @@ describe("MochaWatch", () => {
   });
 
   describe("#fileChanged", () => {
-    it('should ignore calls if "stopped"', async () => {
+    it('should ignore calls if "stopped"', () => {
       const mochaWatch = new MochaWatch();
       mochaWatch.state = "stopped";
 
       const calls = [];
       mochaWatch.queueFile = (...args) => calls.push(args);
 
-      await mochaWatch.fileChanged();
+      mochaWatch.fileChanged();
 
       expect(calls, "to be empty");
     });
 
-    it("should reload an existing file", async () => {
+    it("should reload an existing file", () => {
       const reloadCalls = [];
       const fakeFile = {
-        reload: (...args) => reloadCalls.push(args)
+        reload: (...args) =>
+          Promise.resolve().then(() => reloadCalls.push(args))
       };
       const sourceGraph = createMockSourceGraph({
         query: () => fakeFile
@@ -76,19 +77,22 @@ describe("MochaWatch", () => {
       const mochaWatch = new MochaWatch(null, sourceGraph);
       mochaWatch.state = "ready";
 
-      await mochaWatch.fileChanged("/path/to/file");
-
-      expect(reloadCalls, "not to be empty");
-      expect(mochaWatch.watcherQueuedFiles, "to be empty");
-      clearTimeout(mochaWatch.testTimer);
+      return expect(
+        () => mochaWatch.fileChanged("/path/to/file"),
+        "to be fulfilled"
+      ).then(() => {
+        expect(reloadCalls, "not to be empty");
+        expect(mochaWatch.watcherQueuedFiles, "to be empty");
+        clearTimeout(mochaWatch.testTimer);
+      });
     });
 
-    it("should queue a new file", async () => {
+    it("should queue a new file", () => {
       const sourceGraph = createMockSourceGraph();
       const mochaWatch = new MochaWatch(null, sourceGraph);
       mochaWatch.state = "ready";
 
-      await mochaWatch.fileChanged("/path/to/file");
+      mochaWatch.fileChanged("/path/to/file");
 
       expect(mochaWatch.watcherQueuedFiles, "to contain", "/path/to/file");
       clearTimeout(mochaWatch.testTimer);
@@ -96,19 +100,19 @@ describe("MochaWatch", () => {
   });
 
   describe("#fileUnlink", () => {
-    it('should ignore calls if "stopped"', async () => {
+    it('should ignore calls if "stopped"', () => {
       const mochaWatch = new MochaWatch();
       mochaWatch.state = "stopped";
 
       const calls = [];
       mochaWatch.queueFile = (...args) => calls.push(args);
 
-      await mochaWatch.fileUnlink();
+      mochaWatch.fileUnlink();
 
       expect(calls, "to be empty");
     });
 
-    it("should remove an existing file", async () => {
+    it("should remove an existing file", () => {
       const removeCalls = [];
       const fakeFile = {
         remove: (...args) => removeCalls.push(args)
@@ -119,7 +123,7 @@ describe("MochaWatch", () => {
       const mochaWatch = new MochaWatch(null, sourceGraph);
       mochaWatch.state = "ready";
 
-      await mochaWatch.fileUnlink("/path/to/file");
+      mochaWatch.fileUnlink("/path/to/file");
 
       expect(removeCalls, "not to be empty");
       expect(mochaWatch.watcherQueuedFiles, "to be empty");
@@ -128,7 +132,7 @@ describe("MochaWatch", () => {
   });
 
   describe("#flushQueuedFiles", () => {
-    it("should recalculate the files run by mocha", async () => {
+    it("should recalculate the files run by mocha", () => {
       const mochaOpts = {
         extension: ["js"]
       };
@@ -138,12 +142,15 @@ describe("MochaWatch", () => {
       });
       const mochaWatch = new MochaWatch(null, sourceGraph, null, mochaOpts);
 
-      await mochaWatch.flushQueuedFiles();
-
-      expect(setTestFilePathsCalls, "to have length", 1);
+      return expect(
+        () => mochaWatch.flushQueuedFiles(),
+        "to be fulfilled"
+      ).then(() => {
+        return expect(setTestFilePathsCalls, "to have length", 1);
+      });
     });
 
-    it("should process any queued files", async () => {
+    it("should process any queued files", () => {
       const mochaOpts = {
         extension: ["js"]
       };
@@ -158,14 +165,17 @@ describe("MochaWatch", () => {
         "/path/to/file3"
       ];
 
-      await mochaWatch.flushQueuedFiles();
-
-      expect(addFileFromPathCalls, "to equal", [
-        ["/path/to/file1"],
-        ["/path/to/file2"],
-        ["/path/to/file3"]
-      ]);
-      expect(mochaWatch.watcherQueuedFiles, "to be empty");
+      return expect(() => mochaWatch.flushQueuedFiles(), "to be fulfilled")
+        .then(() => {
+          return expect(addFileFromPathCalls, "to equal", [
+            ["/path/to/file1"],
+            ["/path/to/file2"],
+            ["/path/to/file3"]
+          ]);
+        })
+        .then(() => {
+          return expect(mochaWatch.watcherQueuedFiles, "to be empty");
+        });
     });
   });
 
@@ -217,21 +227,22 @@ describe("MochaWatch", () => {
   });
 
   describe("#runTests", () => {
-    it("should flush queued files", async () => {
+    it("should flush queued files", () => {
       const mochaWorker = createMockMochaWorker();
       const mochaWatch = new MochaWatch(null, null, mochaWorker);
       mochaWatch.state = "ready";
-      mochaWatch.findTestFilesToRun = () => [];
+      mochaWatch.findTestFilesToRun = () => Promise.resolve([]);
 
       const calls = [];
-      mochaWatch.flushQueuedFiles = (...args) => calls.push(args);
+      mochaWatch.flushQueuedFiles = (...args) =>
+        Promise.resolve().then(() => calls.push(args));
 
-      await mochaWatch.runTests();
-
-      expect(calls, "to have length", 1);
+      return expect(() => mochaWatch.runTests(), "to be fulfilled").then(() => {
+        return expect(calls, "to have length", 1);
+      });
     });
 
-    it("should trigger the mocha worker with found test files", async () => {
+    it("should trigger the mocha worker with found test files", () => {
       const calls = [];
       const mochaWorker = createMockMochaWorker({
         runTests: (...args) => calls.push(args)
@@ -239,17 +250,14 @@ describe("MochaWatch", () => {
       const mochaWatch = new MochaWatch(null, null, mochaWorker);
       mochaWatch.state = "ready";
       mochaWatch.flushQueuedFiles = () => Promise.resolve();
-      mochaWatch.findTestFilesToRun = () => [
-        "/path/to/file1",
-        "/path/to/file2",
-        "/path/to/file3"
-      ];
+      mochaWatch.findTestFilesToRun = () =>
+        Promise.resolve(["/path/to/file1", "/path/to/file2", "/path/to/file3"]);
 
-      await mochaWatch.runTests();
-
-      expect(calls, "to equal", [
-        [["/path/to/file1", "/path/to/file2", "/path/to/file3"]]
-      ]);
+      return expect(() => mochaWatch.runTests(), "to be fulfilled").then(() => {
+        return expect(calls, "to equal", [
+          [["/path/to/file1", "/path/to/file2", "/path/to/file3"]]
+        ]);
+      });
     });
   });
 });
