@@ -145,6 +145,26 @@ describe("MochaWorker", () => {
       });
     });
 
+    it("should resolve immediately if no files are supplied", () => {
+      const mochaWorker = new MochaWorker(
+        {
+          spec: ["a.spec.js", "b.spec.js"]
+        },
+        ["--reporter", "dot", "a.spec.js", "b.spec.js"]
+      );
+
+      const calls = [];
+      MochaWorker.childProcessSpawn = (...args) => {
+        calls.push(args);
+      };
+
+      const workerPromise = mochaWorker.runTests([]);
+
+      return expect(workerPromise, "to be fulfilled").then(() => {
+        expect(calls, "to be empty");
+      });
+    });
+
     it("should reject and transition into the stopped state on spawn failure", () => {
       const mochaWorker = new MochaWorker(
         {
@@ -163,6 +183,21 @@ describe("MochaWorker", () => {
       return expect(workerPromise, "to be rejected with", error).then(() => {
         expect(mochaWorker, "to satisfy", { state: "stopped" });
       });
+    });
+
+    it("should reject if a test run is already in progress", () => {
+      const mochaWorker = new MochaWorker(
+        {
+          spec: ["a.spec.js", "b.spec.js"]
+        },
+        ["--reporter", "dot", "a.spec.js", "b.spec.js"]
+      );
+
+      mochaWorker.state = "started";
+
+      const workerPromise = mochaWorker.runTests(["c.spec.js"]);
+
+      return expect(workerPromise, "to be rejected with", "Already running.");
     });
   });
 });
