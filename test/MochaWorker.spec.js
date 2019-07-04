@@ -117,5 +117,52 @@ describe("MochaWorker", () => {
         return workerPromise;
       });
     });
+
+    it("should resolve and transition into the stopped state on close", () => {
+      const mochaWorker = new MochaWorker(
+        {
+          spec: ["a.spec.js", "b.spec.js"]
+        },
+        ["--reporter", "dot", "a.spec.js", "b.spec.js"]
+      );
+      mochaWorker.generateArgs = () => ["--reporter", "dot", "c.spec.js"];
+      let emitter;
+      MochaWorker.childProcessSpawn = () => {
+        emitter = new EventEmitter();
+        setImmediate(() => {
+          emitter.emit("close", 127);
+        });
+        return emitter;
+      };
+
+      const workerPromise = mochaWorker.runTests(["c.spec.js"]);
+
+      return expect(workerPromise, "to be fulfilled with", {
+        exitCode: 127,
+        testDuration: expect.it("to be a number")
+      }).then(() => {
+        expect(mochaWorker, "to satisfy", { state: "stopped" });
+      });
+    });
+
+    it("should reject and transition into the stopped state on spawn failure", () => {
+      const mochaWorker = new MochaWorker(
+        {
+          spec: ["a.spec.js", "b.spec.js"]
+        },
+        ["--reporter", "dot", "a.spec.js", "b.spec.js"]
+      );
+      mochaWorker.generateArgs = () => ["--reporter", "dot", "c.spec.js"];
+      const error = new Error("fail");
+      MochaWorker.childProcessSpawn = () => {
+        throw error;
+      };
+
+      const workerPromise = mochaWorker.runTests(["c.spec.js"]);
+
+      return expect(workerPromise, "to be rejected with", error).then(() => {
+        expect(mochaWorker, "to satisfy", { state: "stopped" });
+      });
+    });
   });
 });
