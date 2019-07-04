@@ -15,7 +15,7 @@ try {
   }
 }
 
-if (pathToLocalBin) {
+if (pathToLocalBin && pathToLocalBin !== __filename) {
   const { spawn } = require("child_process");
 
   const args = [pathToLocalBin].concat(process.argv.slice(2));
