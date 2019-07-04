@@ -68,7 +68,8 @@ describe("MochaWatch", () => {
     it("should reload an existing file", () => {
       const reloadCalls = [];
       const fakeFile = {
-        reload: (...args) => reloadCalls.push(args)
+        reload: (...args) =>
+          Promise.resolve().then(() => reloadCalls.push(args))
       };
       const sourceGraph = createMockSourceGraph({
         query: () => fakeFile
@@ -76,11 +77,14 @@ describe("MochaWatch", () => {
       const mochaWatch = new MochaWatch(null, sourceGraph);
       mochaWatch.state = "ready";
 
-      mochaWatch.fileChanged("/path/to/file");
-
-      expect(reloadCalls, "not to be empty");
-      expect(mochaWatch.watcherQueuedFiles, "to be empty");
-      clearTimeout(mochaWatch.testTimer);
+      return expect(
+        () => mochaWatch.fileChanged("/path/to/file"),
+        "to be fulfilled"
+      ).then(() => {
+        expect(reloadCalls, "not to be empty");
+        expect(mochaWatch.watcherQueuedFiles, "to be empty");
+        clearTimeout(mochaWatch.testTimer);
+      });
     });
 
     it("should queue a new file", () => {
