@@ -1,6 +1,11 @@
 #!/usr/bin/env node
 
-const debug = require("../lib/debug");
+// Allows using DEBUG=true instead of debug-module syntax
+if (process.env.DEBUG === "true") {
+  process.env.DEBUG = "imocha*";
+}
+
+const debug = require("debug")("imocha");
 const resolveFrom = require("resolve-from");
 let pathToLocalBin;
 

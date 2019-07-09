@@ -212,15 +212,12 @@ describe("MochaWatch", () => {
       it("should reschedule the timer and queue a test run", () => {
         const mochaWatch = new MochaWatch();
         mochaWatch.state = "ready";
-        mochaWatch.testTimer = setTimeout(() => {}, 2000);
-
-        const calls = [];
-        mochaWatch.debug = (...args) => calls.push(args);
+        const myTimer = setTimeout(() => {}, 2000);
+        mochaWatch.testTimer = myTimer;
 
         mochaWatch.queueTestRun();
 
-        expect(calls, "to equal", [["resetting test timer."]]);
-        expect(mochaWatch.testTimer, "not to be null");
+        expect(mochaWatch.testTimer, "not to be", myTimer);
         clearTimeout(mochaWatch.testTimer);
       });
     });
