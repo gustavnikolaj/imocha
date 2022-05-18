@@ -39,7 +39,7 @@
     "chokidar": "^3.3.0",
     "debug": "^4.1.1",
     "minimatch": "5.1.0",
-    "mocha": "^6.2.2",
+    "mocha": "^10.0.0",
     "resolve-from": "^5.0.0"
   },
   "nyc": {
